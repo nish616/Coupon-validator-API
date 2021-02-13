@@ -3,8 +3,7 @@ const Coupon = require("../models/coupon");
 
 router.post("/validateCoupon", async (req,res) => {
  try{
-     let newCartTotal;
-
+     let discount;
     const {couponName , cartTotal} = req.body;
 
     const date = new Date();
@@ -20,17 +19,19 @@ router.post("/validateCoupon", async (req,res) => {
     } else if(cartTotal < minAmount){
         return res.status(400).json({"message" : `Cart total should have minimum ${minAmount}`});
     } else if(isPercent){
-        newCartTotal = (cartTotal) * (percent/100);
-        if(newCartTotal > maxAmount ){
+        discount = (cartTotal) * (percent/100);
+        if(discount > maxAmount ){
            // newCartTotal = cartTotal - maxAmount;
-            return res.status(200).json({"message" : "Coupon Applied!","Discount" : maxAmount});
+           discount = maxAmount;
+            return res.status(200).json({"message" : "Coupon Applied!","Discount" : discount});
         }else {
             //newCartTotal = cartTotal - newCartTotal;
-            return res.status(200).json({"message" : "Coupon Applied!","Discount" : newCartTotal});
+            return res.status(200).json({"message" : "Coupon Applied!","Discount" : discount});
         }
     } else {
-        newCartTotal = cartTotal - maxAmount;
-        return res.status(200).json({"message" : "Coupon Applied!","Discount" : newCartTotal});
+        discount =  maxAmount;
+        
+        res.status(200).json({"message" : "Coupon Applied!","Discount" : discount});
     }
 
  }catch(err){
