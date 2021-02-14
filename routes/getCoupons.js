@@ -6,7 +6,7 @@ router.get("/getCoupons" , async (req,res) => {
    try{
 
     const coupons = await Coupon.aggregate([
-        {$project : {_id : 0 , name : 1, description : 1}}
+        {$project : {_id : 0 , name : 1, description : 1, end : 1}}
     ]);
 
     res.status(200).send(coupons);
