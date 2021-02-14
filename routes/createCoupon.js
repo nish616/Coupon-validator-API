@@ -4,14 +4,16 @@ const Coupon = require("../models/coupon");
 
 router.post("/createCoupon" , async (req,res) => {
     try {
-    const {name, isActive, start, end, isPercent, minAmount, maxAmount , description} = req.body;
-
+    
+    const {name, isActive, start, end, isPercent, percent, minAmount, maxAmount , description} = req.body;
+    //console.log(req.body);
     const newCoupon = {
         name : name,
         isActive : isActive,
         start : start,
         end : end,
         isPercent : isPercent,
+        percent : percent,
         minAmount : minAmount,
         maxAmount : maxAmount,
         description : description
