@@ -9,7 +9,7 @@ require("./DB/dbConfig");
 
 //import routes
 const createCoupon = require("./routes/createCoupon");
-const getCoupon = require("./routes/getCoupons");
+const getCoupons = require("./routes/getCoupons");
 const validateCoupon = require("./routes/validateCoupon");
 
 const app = express();
@@ -22,12 +22,10 @@ app.use(bodyParser.json());
 
 //Route middleware
 app.use("/admin/", createCoupon);
-app.use("/store/", getCoupon);
+app.use("/store/", getCoupons);
 app.use("/validate/",validateCoupon);
 
-app.get("/" ,(req,res) => {
-    res.send("hello");
-})
+
 
 let port = process.env.PORT;
 if (port == null || port == "") {
