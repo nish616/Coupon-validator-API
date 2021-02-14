@@ -23,7 +23,11 @@ app.use(bodyParser.json());
 //Route middleware
 app.use("/admin/", createCoupon);
 app.use("/store/", getCoupon);
-app.use("/checkout/",validateCoupon);
+app.use("/validate/",validateCoupon);
+
+app.get("/" ,(req,res) => {
+    res.send("hello");
+})
 
 let port = process.env.PORT;
 if (port == null || port == "") {
