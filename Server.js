@@ -25,4 +25,10 @@ app.use("/admin/", createCoupon);
 app.use("/store/", getCoupon);
 app.use("/checkout/",validateCoupon);
 
-app.listen(5000, console.log("Server up and running!"));
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 5000;
+}
+app.listen(port);
+
+app.listen(port, console.log("Server up and running!"));
