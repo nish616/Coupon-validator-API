@@ -1,5 +1,5 @@
 # Coupon-validator-API
-
+An API for validating coupons 
 ## Deployed in Heroku
 baseURL : https://sleepy-hamlet-70742.herokuapp.com
 
