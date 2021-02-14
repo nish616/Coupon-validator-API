@@ -20,7 +20,7 @@ router.post("/validateCoupon", async (req,res) => {
         return res.status(400).json({"message" : `Cart total should have minimum ${minAmount}`});
     } else if(isPercent){
         discount = (cartTotal) * (percent/100);
-        if(discount > maxAmount ){
+        if(discount >= maxAmount ){
            // newCartTotal = cartTotal - maxAmount;
            discount = maxAmount;
             return res.status(200).json({"message" : "Coupon Applied!","Discount" : discount});
